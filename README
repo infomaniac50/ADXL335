@@ -1,6 +1,7 @@
 ADXL335 Interface Library
 Derek Chafin
 September 14, 2011
+Public Domain Code
 
 An arduino library to read the ADXL335 acceleration sensor from Adafruit.com
 
