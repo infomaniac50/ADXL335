@@ -1,0 +1,8 @@
+ADXL335 Interface Library
+Derek Chafin
+September 14, 2011
+
+An arduino library to read the ADXL335 acceleration sensor from Adafruit.com
+
+The library takes the raw input from the sensor and outputs all three axis in earth gravities.
+The library is able to detect freefall as well as calculate the hypotenuse of the vector and all three angles; rho, phi, and theta.
