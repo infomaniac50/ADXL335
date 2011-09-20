@@ -15,7 +15,6 @@ class ADXL335
     ADXL335(int pin_x, int pin_y, int pin_z, float aref);
     void setThreshold(float deadzone);
     boolean getFreefall();
-    float getA();
     float getX();
     float getY();
     float getZ();

@@ -71,17 +71,22 @@ float ADXL335::getGravity(int reading)
 
 float ADXL335::_getRho(float ax, float ay, float az)
 {
-  return atan2(ax, geta2d(ay, az)) * _rad2deg;  
+  return geta3d(_xg,_yg,_zg);
 }
 
 float ADXL335::_getPhi(float ax, float ay, float az)
 {
-  return atan2(ay, geta2d(ax, az)) * _rad2deg;  
+  return atan2(ay, ax) * _rad2deg;  
 }
 
 float ADXL335::_getTheta(float ax, float ay, float az)
 {
-  return atan2(geta2d(ay, ax), az) * _rad2deg;
+  float rho = _getRho(ax, ay, az);
+  
+  if (rho == 0.0)
+    return NAN;
+  else
+    return acos(az / rho) * _rad2deg;
 }
 
 //end private methods
@@ -98,11 +103,6 @@ boolean ADXL335::getFreefall()
 {
   //if all three vectors read zero then return true, otherwise; false.
   return _xg == 0.0 && _yg == 0.0 && _zg == 0.0;
-}
-
-float ADXL335::getA()
-{
-  return geta3d(_xg,_yg,_zg);
 }
 
 float ADXL335::getX()
