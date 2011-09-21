@@ -23,7 +23,7 @@ class ADXL335
     float getTheta();
     void update();
   private:
-    int zeroCorrection();
+    int zeroCorrection(int pin);
     float geta2d(float gx, float gy);
     float geta3d(float gx, float gy, float gz);
     void processDeadzone(float* gv);
