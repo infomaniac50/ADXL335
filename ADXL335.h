@@ -13,6 +13,7 @@ class ADXL335
 {
   public:
     ADXL335(int pin_x, int pin_y, int pin_z, float aref);
+    ADXL335(int pin_x, int pin_y, int pin_z, float aref, boolean zero);
     void setThreshold(float deadzone);
     boolean getFreefall();
     float getX();
