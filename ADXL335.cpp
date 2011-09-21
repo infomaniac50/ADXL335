@@ -7,7 +7,7 @@
 #include "WProgram.h"
 #include "ADXL335.h"
 
-ADXL335::ADXL335(int pin_x, int pin_y, int pin_z, float aref, boolean zero)
+ADXL335::ADXL335(int pin_x, int pin_y, int pin_z, float aref)
 {
   _aref = aref;
   _pin_x = pin_x;
@@ -16,40 +16,9 @@ ADXL335::ADXL335(int pin_x, int pin_y, int pin_z, float aref, boolean zero)
   _mvG = aref / 10.0;
   _bias = aref / 2.0;
   _rad2deg = 180.0 / M_PI;
-
-  if (zero)
-  {
-    _zero_x = zeroCorrection(_pin_x);
-    _zero_y = zeroCorrection(_pin_y);
-    _zero_z = zeroCorrection(_pin_z);
-  }
-  else
-  {
-    _zero_x = 0;
-    _zero_y = 0;
-    _zero_z = 0;
-  }
-}
-
-ADXL335::ADXL335(int pin_x, int pin_y, int pin_z, float aref)
-{
-  ADXL335(pin_x, pin_y, pin_z, aref, false);
 }
 
 //begin private methods
-int ADXL335::zeroCorrection(int pin)
-{
-  int zero = 1024 / 2;
-  unsigned long long total = 0;
-  for(int i = 0; i < 50; i++)
-  {
-    total += analogRead(pin);
-    delay(20);
-  }
-  
-  return -(zero - total / 50);
-}
-
 float ADXL335::geta2d(float gx, float gy)
 {
   float a;
@@ -167,9 +136,9 @@ float ADXL335::getTheta()
 
 void ADXL335::update()
 {
-  _xg = getGravity(analogRead(_pin_x) + _zero_x);
-  _yg = getGravity(analogRead(_pin_y) + _zero_y);
-  _zg = getGravity(analogRead(_pin_z) + _zero_z);
+  _xg = getGravity(analogRead(_pin_x));
+  _yg = getGravity(analogRead(_pin_y));
+  _zg = getGravity(analogRead(_pin_z));
 }
 
 //end public methods
