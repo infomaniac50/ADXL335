@@ -4,7 +4,6 @@
   Released into the public domain.
 */
 
-#include "WProgram.h"
 #include "ADXL335.h"
 
 ADXL335::ADXL335(int pin_x, int pin_y, int pin_z, float aref)
