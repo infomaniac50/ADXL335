@@ -7,7 +7,11 @@
 #ifndef ADXL335_h
 #define ADXL335_h
 
-#include "WProgram.h"
+#if (ARDUINO >= 100)
+ #include "Arduino.h"
+#else
+ #include "WProgram.h"
+#endif
 
 class ADXL335
 {
